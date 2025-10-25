@@ -6,7 +6,7 @@
 
 [![Release Docker](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/release-docker.yml/badge.svg?branch=main)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/release-docker.yml)
 [![Docker image](https://img.shields.io/badge/GHCR-hh--oauth2--infra-2ea44f?logo=docker)](https://ghcr.io/do6pbln9l/hh-oauth2-infra)
-[![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml?branch=main)
+[![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml?query=branch%3Amain)
 
 [![Bash](https://img.shields.io/badge/Bash-4.4+-blue.svg)](https://www.gnu.org/software/bash/)
 [![nginx](https://img.shields.io/badge/nginx-1.22+-green.svg)](https://nginx.org/)
