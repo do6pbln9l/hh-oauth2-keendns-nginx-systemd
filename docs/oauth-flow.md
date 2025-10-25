@@ -2,36 +2,69 @@
 [← Back to README](../README.md)
 
 
-```
-┌─────────────────────────────────────┐
-│ Интернет (HTTPS:443)                │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│ KeenDNS Cloud                       │
-│ SSL Termination + Port Forward      │
-└──────────────┬──────────────────────┘
-               │ HTTP:80
-               ▼
-┌─────────────────────────────────────┐
-│ nginx Reverse Proxy                 │
-│ X-Forwarded-Proto: https            │
-└──────────────┬──────────────────────┘
-               │ HTTP:8000
-               ▼
-┌─────────────────────────────────────┐
-│ Backend Application                 │
-│ OAuth Callback Handler              │
-└──────────────┬──────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────┐
-│ HeadHunter OAuth2 API               │
-└─────────────────────────────────────┘
 
+
+```mermaid
+flowchart TB
+
+    subgraph client["Клиент"]
+        Browser[🌐 Браузер пользователя]
+    end
+    
+    subgraph cloud["☁️ KeenDNS Cloud"]
+        KeenDNS[SSL Termination<br/>your-domain.keenetic.pro]
+    end
+    
+    subgraph home["🏠 Home Infrastructure"]
+        direction TB
+        Nginx[🔄 nginx Reverse Proxy<br/>HTTP:80 → :8000]
+        App[🤖 Backend Application<br/>Flask/Telegram Bot :5000]
+        
+        subgraph automation["⚙️ Token Automation"]
+            direction LR
+            Timer[⏱️ systemd timer<br/>Every 6h]
+            Script[📜 refresh_token.sh]
+        end
+        
+        TokenStore[(🔐 Token Storage<br/>/var/lib/hh-token/token.json)]
+    end
+    
+    subgraph api["External Services"]
+        HHAPI[🏢 HeadHunter OAuth2 API<br/>api.hh.ru]
+    end
+    
+    %% OAuth Flow
+    Browser -->|1. OAuth Request| KeenDNS
+    KeenDNS -->|2. Forward| Nginx
+    Nginx -->|3. Proxy| App
+    App <-->|4. API Calls| HHAPI
+    
+    %% Token Refresh
+    Timer -.->|Trigger| Script
+    Script -->|5. Refresh| HHAPI
+    Script -->|6. Save| TokenStore
+    App -->|7. Read| TokenStore
+    
+    %% Styling
+    style Nginx fill:#2E8B57,color:#FFFFFF,stroke:#1a5f3a,stroke-width:2px
+    style App fill:#4682B4,color:#FFFFFF,stroke:#1565c0,stroke-width:2px
+    style HHAPI fill:#DC143C,color:#FFFFFF,stroke:#a00000,stroke-width:2px
+    style Timer fill:#FFA500,color:#000000,stroke:#cc8400,stroke-width:2px
+    style Script fill:#FF8C00,color:#FFFFFF,stroke:#cc7000,stroke-width:2px
+    style TokenStore fill:#9370DB,color:#FFFFFF,stroke:#6a4db8,stroke-width:2px
+    style Browser fill:#708090,color:#FFFFFF,stroke:#505a63,stroke-width:2px
+    style KeenDNS fill:#87CEEB,color:#000000,stroke:#5fa8c0,stroke-width:2px
 ```
 
+### Цветовая схема
+
+- 🟢 **Зелёный** — инфраструктурные компоненты (nginx)
+- 🔵 **Синий** — приложения (Flask, Telegram Bot)
+- 🔴 **Розовый** — внешние API (HeadHunter)
+- 🟠 **Оранжевый** — автоматизация (systemd, Bash)
+- 🟣 **Фиолетовый** — хранилище данных
+- ⚪ **Серый** — клиентская часть
+- 🔵 **Голубой** — облачные сервисы (KeenDNS)
 
 ---
 
