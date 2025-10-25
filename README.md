@@ -212,7 +212,27 @@ tail -f /var/log/nginx/oauth_callback.log
 journalctl -t hh-token-refresh --since today -f
 
 ```
+---
 
+## Запуск через Docker (GHCR)
+
+### Всегда последняя стабильная версия
+```
+docker pull ghcr.io/do6pbln9l/hh-oauth2-infra:latest
+docker run --rm -p 8000:8000 ghcr.io/do6pbln9l/hh-oauth2-infra:latest
+```
+
+### Конкретная версия (пример)
+```
+docker pull ghcr.io/do6pbln9l/hh-oauth2-infra:v1.0.0
+docker run --rm -p 8000:8000 ghcr.io/do6pbln9l/hh-oauth2-infra:v1.0.0
+```
+
+### Проверка
+```
+curl -i http://127.0.0.1:8000/
+curl -i "http://127.0.0.1:8000/callback?code=TEST123"
+```
 ---
 
 ## 🚀 Переход на продакшен-приложение
