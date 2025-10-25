@@ -2,12 +2,16 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd)
-[![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml)
+[![Repo size](https://img.shields.io/github/repo-size/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](#)
+
+[![Release Docker](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/release-docker.yml/badge.svg?branch=main)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/release-docker.yml)
 [![Docker image](https://img.shields.io/badge/GHCR-hh--oauth2--infra-2ea44f?logo=docker)](https://ghcr.io/do6pbln9l/hh-oauth2-infra)
+[![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml)
+
 [![Bash](https://img.shields.io/badge/Bash-4.4+-blue.svg)](https://www.gnu.org/software/bash/)
 [![nginx](https://img.shields.io/badge/nginx-1.22+-green.svg)](https://nginx.org/)
 [![systemd](https://img.shields.io/badge/systemd-247+-red.svg)](https://systemd.io/)
-[![Repo size](https://img.shields.io/github/repo-size/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](#)
+
 
 **Инфраструктурное решение** для интеграции с HeadHunter API через OAuth2 с reverse-proxy nginx за KeenDNS Cloud и автообновлением токенов через systemd timers.
 
