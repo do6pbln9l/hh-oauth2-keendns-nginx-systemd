@@ -33,17 +33,22 @@ flowchart TB
         HHAPI[🏢 HeadHunter OAuth2 API<br/>api.hh.ru]
     end
     
-    %% OAuth Flow
+    %% OAuth Flow (первичная авторизация):
     Browser -->|1. OAuth Request| KeenDNS
     KeenDNS -->|2. Forward| Nginx
-    Nginx -->|3. Proxy| App
-    App <-->|4. API Calls| HHAPI
+    Nginx -->|3. Proxy :8000| App
+    App -->|4. OAuth callback| HHAPI
+    App -->|5. Сохраняет первый tokens| TokenStore
     
-    %% Token Refresh
-    Timer -.->|Trigger| Script
-    Script -->|5. Refresh| HHAPI
-    Script -->|6. Save| TokenStore
-    App -->|7. Read| TokenStore
+    %% Production Flow (работа приложения):
+    App -->|6. Считывание tokens| TokenStore
+    App <-->|7. API запросы| HHAPI
+    
+    %% Token Refresh Flow (автообновление):
+    Timer -.->|8. Trigger| Script
+    Script -->|9. Обновляет tokens| HHAPI
+    Script -->|10. Сохраняет new tokens| TokenStore
+ 
     
     %% Styling
     style Nginx fill:#2E8B57,color:#FFFFFF,stroke:#1a5f3a,stroke-width:2px
