@@ -424,7 +424,7 @@ MIT License — см. [LICENSE](LICENSE)
 
 **Александр Добрынин / Aleksandr Dobrynin**
 
-- GitHub: [@dob6bln9l]([https://github.com/dob6bln9l](https://github.com/do6pbln9l?tab=repositories))
+- GitHub: [@dob6bln9l](https://github.com/do6pbln9l?tab=repositories)
 
 ---
 
