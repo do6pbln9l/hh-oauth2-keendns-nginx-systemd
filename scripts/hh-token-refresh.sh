@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
+IFS=$'\n\t'
 
-ENV_FILE="/opt/job-search/telegram-bot/.env"
+ENV_FILE="${ENV_FILE:-/opt/job-search/telegram-bot/.env}"
+[[ -f "$ENV_FILE" ]] || { logger -t hh-token-refresh "env file not found: $ENV_FILE"; exit 3; }
 STATE_DIR="/var/lib/hh-token"
 CUR="${STATE_DIR}/token.json"
 NEW="${STATE_DIR}/token.json.new"
@@ -12,7 +14,8 @@ mkdir -p "$STATE_DIR"
 chmod 700 "$STATE_DIR"
 
 set -a
-source "$ENV_FILE"
+# shellcheck source=/dev/null
+. "$ENV_FILE"
 set +a
 
 if [[ ! -f "$CUR" ]]; then
