@@ -30,7 +30,7 @@ flowchart TB
     end
     
     subgraph api["External Services"]
-        HHAPI[🏢 HeadHunter OAuth2 API<br/>api.hh.ru]
+        HHAPI[🏢 HH OAuth2 API<br/>api.hh.ru]
     end
     
     %% OAuth Flow (первичная авторизация):
