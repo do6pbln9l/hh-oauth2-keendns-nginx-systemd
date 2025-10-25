@@ -2,6 +2,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+
 ENV_FILE="${ENV_FILE:-/opt/job-search/telegram-bot/.env}"
 [[ -f "$ENV_FILE" ]] || { logger -t hh-token-refresh "env file not found: $ENV_FILE"; exit 3; }
 STATE_DIR="/var/lib/hh-token"
