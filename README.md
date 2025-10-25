@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd)
+[![Repo size](https://img.shields.io/github/repo-size/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](#)
 
 **Инфраструктурное решение** для интеграции с HeadHunter API через OAuth2 с reverse-proxy nginx за KeenDNS Cloud и автообновлением токенов через systemd timers.
 
