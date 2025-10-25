@@ -1,0 +1,17 @@
+[Unit]
+Description=Run HH token refresh periodically
+
+[Timer]
+# Ежедневно в 17:00 по локальному времени
+OnCalendar=*-*-* 17:00:00
+
+# Дополнительно каждые 6 часов
+OnUnitActiveSec=6h
+
+# Выполнить пропущенные срабатывания после простоя
+Persistent=true
+
+Unit=hh-token-refresh.service
+
+[Install]
+WantedBy=timers.target

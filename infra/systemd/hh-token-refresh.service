@@ -1,0 +1,12 @@
+[Unit]
+Description=HeadHunter OAuth token refresh
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/root/scripts/hh-token-refresh.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+# Секреты и токены
+.env
+*.env
+!.env.example
+token.json
+*.pem
+*.key
+
+# Логи
+*.log
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Временные файлы
+*.tmp
+*.bak
+*.swp
+*~
+.idea/
+.vscode/
+__pycache__/
