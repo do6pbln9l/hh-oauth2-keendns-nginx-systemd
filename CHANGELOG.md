@@ -3,7 +3,7 @@
 Все значимые изменения документируются в этом файле.
 Формат основан на Keep a Changelog. Версии — Semantic Versioning.
 
-## [1.0.0] - 2025-10-25
+## [1.0.0] - 25-10-2025
 ### Added
 - Конфигурация nginx reverse-proxy для KeenDNS Cloud (SSL termination)
 - systemd timer для автообновления токенов (ежедневно в 17:00)
