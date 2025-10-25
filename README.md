@@ -63,7 +63,7 @@ flowchart TB
     %% Main Flow (OAuth) (основной поток):
     Nginx -->|1. Proxy :8000| FlaskApp
     FlaskApp -->|2. OAuth callback| HHAPI
-    TelegramBot -->|3. API запросы| HHAPI
+    TelegramBot <-->|3. API запросы| HHAPI
 
     %% Token Refresh Flow (автоматизация):
     Timer -.->|4. Каждые 6h| Script
@@ -73,7 +73,7 @@ flowchart TB
     
 
     %% Testing (тестирование):
-    TestServer -.->|8. Альтернатива для<br/>тестирования| Nginx
+    TestServer -->|8. Альтернатива для<br/>тестирования| Nginx
     
     %% Styling
     style Nginx fill:#2E8B57,color:#FFFFFF,stroke:#1a5f3a,stroke-width:2px
