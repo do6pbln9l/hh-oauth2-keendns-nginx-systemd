@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd)
+[![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml)
 [![Docker image](https://img.shields.io/badge/GHCR-hh--oauth2--infra-2ea44f?logo=docker)](https://ghcr.io/do6pbln9l/hh-oauth2-infra)
 [![Repo size](https://img.shields.io/github/repo-size/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](#)
 
@@ -136,7 +137,7 @@ curl -sS -H "Authorization: Bearer \${ACCESS_TOKEN}" https://api.hh.ru/me | jq '
 
 ## 🧪 Тестирование инфраструктуры
 
-### Назначение тестового сервера
+### 1. Назначение тестового сервера
 
 **scripts/test-8000.py** — минимальный HTTP-сервер для **проверки инфраструктуры** без запуска продакшен-приложения:
 
@@ -152,7 +153,7 @@ curl -sS -H "Authorization: Bearer \${ACCESS_TOKEN}" https://api.hh.ru/me | jq '
 - Не работает с базой данных
 - Не реализует функционал продакшен-приложения
 
-### Запуск тестового сервера
+### 2. Запуск тестового сервера
 
 ```
 
@@ -170,7 +171,7 @@ Starting test server on http://0.0.0.0:8000
 
 ```
 
-### Проверка через nginx (локально)
+### 3. Проверка через nginx (локально)
 
 ```
 
@@ -189,7 +190,7 @@ curl -i "http://127.0.0.1:8000/callback?code=TEST123"
 
 ```
 
-### Проверка через KeenDNS (внешний доступ)
+### 4. Проверка через KeenDNS (внешний доступ)
 
 ```
 
@@ -198,7 +199,7 @@ curl -i "https://your-domain.keenetic.pro/callback?code=TEST123"
 
 ```
 
-### Проверка логов
+### 5. Проверка логов
 
 ```
 
@@ -217,24 +218,24 @@ journalctl -t hh-token-refresh --since today -f
 
 ## Запуск через Docker (GHCR)
 
-### Всегда последняя стабильная версия
+### 1. Всегда последняя стабильная версия
 ```
 docker pull ghcr.io/do6pbln9l/hh-oauth2-infra:latest
 docker run --rm -p 8000:8000 ghcr.io/do6pbln9l/hh-oauth2-infra:latest
 ```
 
-### Конкретная версия (пример)
+### 2. Конкретная версия (пример)
 ```
 docker pull ghcr.io/do6pbln9l/hh-oauth2-infra:v1.0.0
 docker run --rm -p 8000:8000 ghcr.io/do6pbln9l/hh-oauth2-infra:v1.0.0
 ```
 
-### Проверка
+### 3. Проверка
 ```
 curl -i http://127.0.0.1:8000/
 curl -i "http://127.0.0.1:8000/callback?code=TEST123"
 ```
-> Образ опубликован в GHCR: [ghcr.io/do6pbln9l/hh-oauth2-infra](ghcr.io/do6pbln9l/hh-oauth2-infra)
+> **Образ опубликован в GHCR:** [ghcr.io/do6pbln9l/hh-oauth2-infra](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/pkgs/container/hh-oauth2-infra)
 > 
 > Если на вашем сервере Docker использует storage-driver vfs и блокирует запуск контейнеров, запустите образ на любой машине/VM с overlay2 или проверяйте через GitHub Actions.
 
