@@ -1,0 +1,7 @@
+.git
+.gitignore
+infra
+docs
+.env*
+*.md
+LICENSE
