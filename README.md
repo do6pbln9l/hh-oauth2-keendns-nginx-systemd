@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub last commit](https://img.shields.io/github/last-commit/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd)
+[![Docker image](https://img.shields.io/badge/GHCR-hh--oauth2--infra-2ea44f?logo=docker)](https://ghcr.io/do6pbln9l/hh-oauth2-infra)
 [![Repo size](https://img.shields.io/github/repo-size/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](#)
 
 **Инфраструктурное решение** для интеграции с HeadHunter API через OAuth2 с reverse-proxy nginx за KeenDNS Cloud и автообновлением токенов через systemd timers.
@@ -233,6 +234,10 @@ docker run --rm -p 8000:8000 ghcr.io/do6pbln9l/hh-oauth2-infra:v1.0.0
 curl -i http://127.0.0.1:8000/
 curl -i "http://127.0.0.1:8000/callback?code=TEST123"
 ```
+> Образ опубликован в GHCR: [ghcr.io/do6pbln9l/hh-oauth2-infra](ghcr.io/do6pbln9l/hh-oauth2-infra)
+> 
+> Если на вашем сервере Docker использует storage-driver vfs и блокирует запуск контейнеров, запустите образ на любой машине/VM с overlay2 или проверяйте через GitHub Actions.
+
 ---
 
 ## 🚀 Переход на продакшен-приложение
