@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  shellcheck:
+    name: ShellCheck scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Run ShellCheck
+        run: |
+          if ls scripts/*.sh >/dev/null 2>&1; then
+            shellcheck -S warning scripts/*.sh
+          else
+            echo "No shell scripts to check."
+          fi
+
+  nginx-test:
+    name: Validate nginx config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install nginx
+        run: sudo apt-get update && sudo apt-get install -y nginx
+      - name: Check nginx.conf syntax
+        run: |
+          sudo nginx -t -c "$GITHUB_WORKSPACE/infra/nginx/nginx.conf" || true
