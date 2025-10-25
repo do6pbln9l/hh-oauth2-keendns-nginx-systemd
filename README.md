@@ -29,26 +29,78 @@
 
 ## 🏗️ Архитектура
 
+```mermaid
+flowchart TB
+    
+    subgraph infra["📦 OAuth2 Infrastructure (Этот репозиторий)"]
+        direction TB
+        Nginx[🔄 nginx<br/>HTTP:80→:8000]
+        
+        subgraph automation["⚙️ Automation"]
+            direction LR
+            Timer[⏱️ systemd<br/>Каждые 6h]
+            Script[📜 refresh.sh<br/>Обновление токенов]
+        end
+        
+        TestServer[🧪 test-8000.py<br/>Тестовый сервер]
+        TokenStore[(🔐 Token Storage<br/>/var/lib/hh-token/token.json)]
+    end
+    
+    subgraph prod["🤖 Production App (Отдельный проект)"]
+        direction TB
+        TelegramBot[📱 Telegram Bot<br/>Поиск вакансий HH]
+        FlaskApp[🌐 Flask Application<br/>Обработка OAuth callback на /callback]
+        
+        TelegramBot -.->|Проект<br/>hh-oauth2-keendns-nginx-systemd| FlaskApp
+    end
+    
+    subgraph external["External"]
+        HHAPI[🏢 HH OAuth2 API<br/>api.hh.ru]
+    end
+    
+    %% Connections / Связи между компонентами
+
+    %% Main Flow (OAuth) (основной поток):
+    Nginx -->|1. Proxy :8000| FlaskApp
+    FlaskApp -->|2. OAuth callback| HHAPI
+    TelegramBot -->|3. API запросы| HHAPI
+
+    %% Token Refresh Flow (автоматизация):
+    Timer -.->|4. Каждые 6h| Script
+    Script -->|5. Обновляет токены| HHAPI
+    Script -->|6. Сохраняет| TokenStore
+    FlaskApp -->|7. Читает| TokenStore
+    
+
+    %% Testing (тестирование):
+    TestServer -.->|8. Альтернатива для<br/>тестирования| Nginx
+    
+    %% Styling
+    style Nginx fill:#2E8B57,color:#FFFFFF,stroke:#1a5f3a,stroke-width:2px
+    style Timer fill:#FFA500,color:#000000,stroke:#cc8400,stroke-width:2px
+    style Script fill:#FF8C00,color:#FFFFFF,stroke:#cc7000,stroke-width:2px
+    style TestServer fill:#DAA520,color:#000000,stroke:#b8860b,stroke-width:2px
+    style TokenStore fill:#9370DB,color:#FFFFFF,stroke:#6a4db8,stroke-width:2px
+    
+    style TelegramBot fill:#4682B4,color:#FFFFFF,stroke:#1565c0,stroke-width:2px
+    style FlaskApp fill:#4169E1,color:#FFFFFF,stroke:#2a4ba8,stroke-width:2px
+    
+    style HHAPI fill:#DC143C,color:#FFFFFF,stroke:#a00000,stroke-width:2px
 ```
 
-┌─────────────────────────────────────────────────────────┐
-│  Этот репозиторий (Инфраструктура OAuth2)               │
-│  ├─ nginx reverse-proxy                                 │
-│  ├─ systemd timer (автообновление токенов)              │
-│  └─ scripts/test-8000.py (тестовый сервер)              │
-└─────────────────────────┬───────────────────────────────┘
-                          │ Проксирует на порт 8000
-                          ▼
-┌─────────────────────────────────────────────────────────┐
-│  Продакшен-приложение (Отдельный проект)                │
-│  ├─ Telegram bot для поиска вакансий HH                 │
-│  ├─ Читает токены из /var/lib/hh-token/token.json       │
-│  └─ Обрабатывает OAuth callback на /callback            │
-└─────────────────────────────────────────────────────────┘
+### Цветовая схема
 
-```
+- 🟢 Зелёный — инфраструктурные компоненты (nginx)
+- 🟠 Оранжевый — автоматизация (systemd timer, Bash scripts)
+- 🟡 Золотой — тестовые/вспомогательные инструменты (test-8000.py)
+- 🟣 Фиолетовый — хранилище данных (Token Storage)
+- 🔵 Синий — продакшен-приложение (Telegram Bot, Flask App)
+- 🔴 Красный — внешние API (HeadHunter)
 
-**Детальная схема потока:** см. [docs/oauth-flow.md](docs/oauth-flow.md)
+
+
+
+### **Детальная схема потока:** см. [docs/oauth-flow.md](docs/oauth-flow.md)
 
 ## 🚀 Быстрый старт
 
