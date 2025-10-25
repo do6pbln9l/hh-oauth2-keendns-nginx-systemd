@@ -4,16 +4,15 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd)
 [![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg)](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml)
 [![Docker image](https://img.shields.io/badge/GHCR-hh--oauth2--infra-2ea44f?logo=docker)](https://ghcr.io/do6pbln9l/hh-oauth2-infra)
-[![CI](https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml/badge.svg?branch(https://github.com/do6pbln9l/hh-oauth2-keendns-nginx-systemd/actions/workflows/lint.yml?query=branch%3Am
+[![Bash](https://img.shields.io/badge/Bash-4.4+-blue.svg)](https://www.gnu.org/software/bash/)
+[![nginx](https://img.shields.io/badge/nginx-1.22+-green.svg)](https://nginx.org/)
+[![systemd](https://img.shields.io/badge/systemd-247+-red.svg)](https://systemd.io/)
 [![Repo size](https://img.shields.io/github/repo-size/do6pbln9l/hh-oauth2-keendns-nginx-systemd)](#)
 
 **Инфраструктурное решение** для интеграции с HeadHunter API через OAuth2 с reverse-proxy nginx за KeenDNS Cloud и автообновлением токенов через systemd timers.
 
 > ⚠️ **Важно:** Этот репозиторий содержит только **инфраструктуру OAuth2**. Продакшен-приложение (Telegram bot для поиска работы) размещено в отдельном проекте и использует эту инфраструктуру для авторизации и автообновления токенов.
 
-[![Bash](https://img.shields.io/badge/Bash-4.4+-blue.svg)](https://www.gnu.org/software/bash/)
-[![nginx](https://img.shields.io/badge/nginx-1.22+-green.svg)](https://nginx.org/)
-[![systemd](https://img.shields.io/badge/systemd-247+-red.svg)](https://systemd.io/)
 
 ## 🎯 Возможности
 
