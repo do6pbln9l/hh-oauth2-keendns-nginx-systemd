@@ -2,7 +2,17 @@
 [← Back to README](../README.md)
 
 
+### 📱 View Mermaid diagram (mobile version)
+<details open>
+  <summary> Click to collapse</summary>
 
+![OAuth2 Infrastructure](images/detailed-oauth2-infrastructure-flow-diagram.png)
+
+</details>
+
+### 🖥️ View Mermaid diagram (desktop version)
+<details close>
+  <summary> Click to expand</summary>
 
 ```mermaid
 flowchart TB
@@ -60,6 +70,7 @@ flowchart TB
     style Browser fill:#708090,color:#FFFFFF,stroke:#505a63,stroke-width:2px
     style KeenDNS fill:#87CEEB,color:#000000,stroke:#5fa8c0,stroke-width:2px
 ```
+</details>
 
 ### Цветовая схема
 
@@ -70,6 +81,7 @@ flowchart TB
 - 🟣 **Фиолетовый** — хранилище данных
 - ⚪ **Серый** — клиентская часть
 - 🔵 **Голубой** — облачные сервисы (KeenDNS)
+
 
 ---
 
