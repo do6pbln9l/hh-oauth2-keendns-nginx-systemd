@@ -34,6 +34,18 @@
 
 ## 🏗️ Архитектура
 
+### 📱 View Mermaid diagram (mobile version)
+<details open>
+  <summary> Click to collapse</summary>
+
+![OAuth2 Infrastructure](docs/images/oauth2-infrastructure-diagram.png)
+
+</details>
+
+### 🖥️ View Mermaid diagram (desktop version)
+<details close>
+  <summary> Click to expand</summary>
+
 ```mermaid
 flowchart TB
     
@@ -104,7 +116,7 @@ flowchart TB
 - 🔵 Синий — продакшен-приложение (Telegram Bot, Flask App)
 - 🔴 Красный — внешние API (HeadHunter)
 
-
+</details>
 
 
 ### **Детальная схема потока:** см. [docs/oauth-flow.md](docs/oauth-flow.md)
